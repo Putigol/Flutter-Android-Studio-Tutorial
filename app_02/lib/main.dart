@@ -1,16 +1,6 @@
-import 'package:app_02/MyButton.dart';
-import 'package:app_02/MyButton_P3.dart';
+
 import 'package:flutter/material.dart';
-import 'MyScaffold.dart';
-import 'MyAppBar.dart';
-import 'MyText.dart';
-import 'MyContainer.dart';
-import 'MyColumnAndRow.dart';
-import 'MyButton.dart';
-import 'MyButton_P2.dart';
-import 'MyButton_P3.dart';
-import 'MyGestures.dart';
-import 'MyTextField.dart';
+import 'my_widgets_02_form/f1_form_basic.dart';
 void main() {
   runApp(const MyApp());
 }
@@ -26,7 +16,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         colorScheme: .fromSeed(seedColor: Colors.deepPurple),
       ),
-      home: const MyTextField(),
+      home: FormBasicDemo(),
     );
   }
 }
