@@ -28,8 +28,6 @@ class MyButton_P3 extends StatelessWidget {
         ],
       ),
 
-
-
       body: Center(
         child: Column(
           children: [
@@ -55,17 +53,48 @@ class MyButton_P3 extends StatelessWidget {
                 elevation: 5,
               ),
             ),
-            SizedBox(height: 20),
-            // InkWell
-            // InkWell không phải là button,
-            // nhưng nó cho phép tạo hiệu ứng gợn sóng (ripple effect)
-            // khi nhấn vào bất kỳ widget nào.
+            SizedBox(height: 50),
 
+            ElevatedButton(
+              onPressed: () {
+                print("Pressed!");
+              },
+              //Nhấn giữ
+              onLongPress: () {
+                print("Long pressed!");
+              },
+              child: Text("ElevatedButton", style: TextStyle(fontSize: 24)),
+              style: ElevatedButton.styleFrom(
+                backgroundColor: Colors.redAccent,
+                //màu nội dung bên trong
+                foregroundColor: Colors.white,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadiusGeometry.circular(10),
+                ),
+                padding: EdgeInsets.symmetric(horizontal: 20, vertical: 15),
+                //Đổ bóng
+                elevation: 5,
+              ),
+            ),
+            SizedBox(height: 20),
+            InkWell(
+              onTap: () {
+                print("InkWell");
+              },
+              onDoubleTap: () {
+                print("Double tapped!");
+              },
+              child: Container(
+                padding: EdgeInsets.symmetric(horizontal: 20, vertical: 15),
+                decoration: BoxDecoration(
+                  border: Border.all(color: Colors.blue),
+                ),
+                child: Text("Button tuỳ chỉnh cới InkWell"),
+              ),
+            ),
           ],
         ),
       ),
-
-
     );
   }
 }
