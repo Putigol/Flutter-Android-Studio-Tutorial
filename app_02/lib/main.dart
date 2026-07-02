@@ -6,6 +6,7 @@ import 'MyText.dart';
 import 'MyContainer.dart';
 import 'MyColumnAndRow.dart';
 import 'MyButton.dart';
+import 'MyButton_P2.dart';
 void main() {
   runApp(const MyApp());
 }
@@ -21,7 +22,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         colorScheme: .fromSeed(seedColor: Colors.deepPurple),
       ),
-      home: const MyButton(),
+      home: const MyButton_P2(),
     );
   }
 }
