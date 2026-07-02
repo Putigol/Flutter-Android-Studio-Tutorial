@@ -57,16 +57,28 @@ class MyButton_P2 extends StatelessWidget {
                   borderRadius: BorderRadiusGeometry.circular(10),
                 ),
 
-                padding: EdgeInsets.symmetric(
-                  horizontal: 20,
-                  vertical: 15,
-                ),
+                padding: EdgeInsets.symmetric(horizontal: 20, vertical: 15),
                 //Đổ bóng
                 elevation: 5,
               ),
             ),
-
-
+            SizedBox(height: 20),
+            // InkWell
+            // InkWell không phải là button,
+            // nhưng nó cho phép tạo hiệu ứng gợn sóng (ripple effect)
+            // khi nhấn vào bất kỳ widget nào.
+            InkWell(
+              onTap: () {
+                print("InkWell");
+              },
+              child: Container(
+                padding: EdgeInsets.symmetric(horizontal: 20, vertical: 15),
+                decoration: BoxDecoration(
+                  border: Border.all(color: Colors.blue),
+                ),
+                child: Text("Button tuỳ chỉnh cới InkWell"),
+              ),
+            ),
           ],
         ),
       ),
