@@ -3,7 +3,7 @@ import "package:sqflite/sqflite.dart";
 import "package:path/path.dart";
 
 class UserDatabaseHelper {
-  static final UserDatabaseHelper _instance = UserDatabaseHelper._init();
+  static final UserDatabaseHelper instance = UserDatabaseHelper._init();
   static Database? _database;
 
   UserDatabaseHelper._init();
@@ -31,7 +31,7 @@ class UserDatabaseHelper {
   Future _createDB(Database db, int version) async {
     await db.execute('''
       CREATE TABLE users(
-        id INTEGER PRIMARY KEY AUTOINCREMENT, //Khoá chính
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
         name TEXT NOT NULL,
         email TEXT NOT NULL,
         phone TEXT NOT NULL,
@@ -92,13 +92,13 @@ class UserDatabaseHelper {
 
   //Đóng CSDL
   Future close() async {
-    final db = await _instance.database;
+    final db = await instance.database;
     db.close();
   }
 
   /*
-  _instance: Singleton pattern đảm bảo chỉ có một _instance của DatabaseHelper
-  database: Getter trả về _instance của Database, tạo mới nếu chưa tồn tại
+  instance: Singleton pattern đảm bảo chỉ có một instance của DatabaseHelper
+  database: Getter trả về instance của Database, tạo mới nếu chưa tồn tại
   _initDB: Khởi tạo database với đường dẫn cụ thể
   _createDB: Tạo các bảng khi database được tạo lần đầu
   close: Đóng kết nối database
@@ -106,13 +106,13 @@ class UserDatabaseHelper {
 
   // Create - Thêm user mới
   Future<int> createUser(User user) async {
-    final db = await _instance.database; //Lấy database
+    final db = await instance.database; //Lấy database
     return await db.insert('users', user.toMap()); //Chèn user vào database
   }
 
   // Read - Đọc tất cả users
   Future<List<User>> getAllUsers() async {
-    final db = await _instance.database;
+    final db = await instance.database;
     final result = await db.query('users'); //SELECT * FROM users
 
     return result.map((map) => User.fromMap(map)).toList(); //Chuyển từ map sang đối tượng
@@ -120,7 +120,7 @@ class UserDatabaseHelper {
 
   // Read - Đọc user theo id
   Future<User?> getUserById(int id) async {
-    final db = await _instance.database;
+    final db = await instance.database;
     final maps = await db.query('users', where: 'id = ?', whereArgs: [id]); //SELECT FROM users WHERE id = ?
 
     if (maps.isNotEmpty) {
@@ -131,7 +131,7 @@ class UserDatabaseHelper {
 
   // Update - Cập nhật user
   Future<int> updateUser(User user) async {
-    final db = await _instance.database;
+    final db = await instance.database;
     return await db.update(
       'users',
       user.toMap(),
@@ -142,19 +142,19 @@ class UserDatabaseHelper {
 
   // Delete - Xoá user
   Future<int> deleteUser(int id) async {
-    final db = await _instance.database;
+    final db = await instance.database;
     return await db.delete('users', where: 'id = ?', whereArgs: [id]);
   }
 
   // Delete - Xoá tất cả users
   Future<int> deleteAllUsers() async {
-    final db = await _instance.database;
+    final db = await instance.database;
     return await db.delete('users');
   }
 
   // Đếm số lượng users
   Future<int> countUsers() async {
-    final db = await _instance.database;
+    final db = await instance.database;
     final result = await db.rawQuery('SELECT COUNT(*) FROM users');
     return Sqflite.firstIntValue(result) ?? 0;
   }
