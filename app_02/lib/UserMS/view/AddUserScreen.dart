@@ -1,6 +1,6 @@
-import 'package:app_02/UserMS/db/UserDatabaseHelper.dart';
-import 'package:app_02/UserMS/model/User.dart';
-import 'package:app_02/UserMS/view/UserForm.dart';
+import '../db/UserDatabaseHelper.dart';
+import '../model/User.dart';
+import 'UserForm.dart';
 import 'package:flutter/material.dart';
 
 class AddUserScreen extends StatelessWidget {
